@@ -17,7 +17,7 @@
 
 
     echo "<br>Task 2. Вывод чисел от A до 15.<br>";
-    $a = 5;
+    $a = 7;
     switch ($a) {
         case 0:
             echo "0<br>";
@@ -71,9 +71,9 @@ function mult($a, $b) {
     echo $a * $b."<br>";
 }
 
-divi(9,3);
+divi(9, 3);
 function divi($a, $b) {
-    echo $a / $b."<br>";
+    echo ($b !=0) ? $a/$b."<br>" : null;
 }
 
 echo "<br>Task 4. Функция с тремя параметрами.<br>";
@@ -94,11 +94,15 @@ function mathOperation($arg1, $arg2, $operation) {
         case 4:
             $operation = divi($arg1, $arg2);
             break;
+        default:
+            echo 'Недопустимое значение.';
+            break;
     }  
 }
 
 echo "<br>Task 6. Возведение числа в степень при помощи рекурсии.<br>";
 
+power (2, 6);
 function power($val, $pow) {
         if ($pow == 0) {
         return 1;
@@ -106,7 +110,7 @@ function power($val, $pow) {
     --$pow;
     return power($val, $pow) * $val;
 }
-echo power(3, 5);
+echo power();
 
 echo "<br>";
 
@@ -122,12 +126,30 @@ $hour = date('H');
     $hourEnd = "ов";
 
 $minutes = date('i');
-    if ($minutes == 1 || $minutes == 21 || $minutes == 31 || $minutes == 41 || $minutes == 51) {
+if ($minutes > 4 && $minutes < 20) {
+    switch($minutes) {
+        case 1: 
         $minutesEnd = "а";
-    } elseif (($minutes >= 2 && $minutes <= 4) || ($minutes >= 22 && $minutes <= 24) || ($minutes >= 32 && $minutes <= 34) || ($minutes >= 42 && $minutes <= 44) || ($minutes >= 52 && $minutes <= 54)) {
+        break;
+        case 2 || 3 || 4:
         $minutesEnd = "ы";
+        break;
+        default: 
+        $minutesEnd = " ";
+        break;
     }
-    $minutesEnd = " ";
+} 
+    switch ($minutes % 10) {
+        case 1: 
+        $minutesEnd = "а";
+        break;
+        case 2 || 3 || 4:
+        $minutesEnd = "ы";
+        break;
+        default: 
+        $minutesEnd =" ";
+        break;
+    }
 echo "Текущее время:".$hour." Час".$hourEnd." ".$minutes." минут".$minutesEnd;
 ?>
 
